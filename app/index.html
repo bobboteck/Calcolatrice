@@ -1,0 +1,194 @@
+<!DOCTIPE html>
+<html>
+	<head>
+		<title>Calcolatrice</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css">
+		<!-- script src="./js/jquery-3.1.1.min.js"></script -->
+	</head>
+	<body>
+		<div class="content">
+			<div>
+				<div id="result" class="display">0</div>
+			</div>
+			<div class="buttonRow">
+				<div class="buttonContainer"><button type="button" onClick="Clear();">C</button></div>
+				<div class="buttonContainer"><button type="button" onClick="Delete();">D</button></div>
+				<div class="buttonContainer"><button type="button" onClick="Operation('%');">%</button></div>
+				<div class="buttonContainer"><button type="button" onClick="Operation('/');">/</button></div>
+			</div>
+			<div class="buttonRow">
+				<div class="buttonContainer"><button type="button" onClick="WriteNumber(7);">7</button></div>
+				<div class="buttonContainer"><button type="button" onClick="WriteNumber(8);">8</button></div>
+				<div class="buttonContainer"><button type="button" onClick="WriteNumber(9);">9</button></div>
+				<div class="buttonContainer"><button type="button" onClick="Operation('*');">*</button></div>
+				<div style="clear: left; margin-bottom: -1px;"></div>
+			</div>
+			<div class="buttonRow">
+				<div class="buttonContainer"><button type="button" onClick="WriteNumber(4);">4</button></div>
+				<div class="buttonContainer"><button type="button" onClick="WriteNumber(5);">5</button></div>
+				<div class="buttonContainer"><button type="button" onClick="WriteNumber(6);">6</button></div>
+				<div class="buttonContainer"><button type="button" onClick="Operation('-');">-</button></div>
+				<div style="clear: left; margin-bottom: -1px;"></div>
+			</div>
+			<div class="buttonRow">
+				<div class="buttonContainer"><button type="button" onClick="WriteNumber(1);">1</button></div>
+				<div class="buttonContainer"><button type="button" onClick="WriteNumber(2);">2</button></div>
+				<div class="buttonContainer"><button type="button" onClick="WriteNumber(3);">3</button></div>
+				<div class="buttonContainer"><button type="button" onClick="Operation('+');">+</button></div>
+				<div style="clear: left; margin-bottom: -1px;"></div>
+			</div>
+			<div class="buttonRow">
+				<div class="buttonContainer"><button type="button" onClick="WriteNumber(0);">0</button></div>
+				<div class="buttonContainer"><button type="button" onClick="WriteNumber('00');">00</button></div>
+				<div class="buttonContainer"><button type="button" onClick="Dot();">.</button></div>
+				<div class="buttonContainer"><button type="button" onClick="Calc();">=</button></div>
+			</div>
+		</div>
+		<script>window.$ = window.jQuery = require('./js/jquery-3.1.1.min.js');</script>
+		<script type="text/javascript">
+function Clear()
+{
+	$("#result").text('0');
+}
+
+function Delete()
+{
+	var expression = $("#result").text();
+	$("#result").text(expression.substring(0,expression.length-1));
+}
+
+function WriteNumber(value)
+{
+	if($("#result").text()=='0')
+	{
+		$("#result").text(value);
+	}
+	else
+	{
+		$("#result").text($("#result").text() + value);
+	}
+}
+
+function Dot()
+{
+	if($("#result").text()=='')
+	{
+		$("#result").text('0.');
+	}
+	else
+	{
+		$("#result").text($("#result").text() + '.');
+	}
+}
+
+function Operation(value)
+{
+	if($("#result").text()=='0')
+	{
+		if(value == '-')
+		{
+			$("#result").text(value);
+		}
+	}
+	else
+	{
+		if($("#result").text() != '-')
+		{
+			$("#result").text($("#result").text() + value);
+		}
+	}
+}
+
+function Calc()
+{
+	try
+	{
+		var espression =$("#result").text();
+		$("#result").text(eval(espression));
+	}
+	catch(err)
+	{
+		$("#result").text('ERROR');
+	}
+}
+
+document.addEventListener('keydown', function(event)
+{
+   	/*alert(event.keyCode);*/
+	
+	switch (event.keyCode) 
+	{
+		case 48:
+		case 96:
+			WriteNumber(0);
+			break;
+		case 49:
+		case 97:
+			WriteNumber(1);
+			break;
+		case 50:
+		case 98:
+			WriteNumber(2);
+			break;
+		case 51:
+		case 99:
+			WriteNumber(3);
+			break;
+		case 52:
+		case 100:
+			WriteNumber(4);
+			break;
+		case 53:
+		case 101:
+			WriteNumber(5);
+			break;
+		case 54:
+		case 102:
+			WriteNumber(6);
+			break;
+		case 55:
+		case 103:
+			WriteNumber(7);
+			break;
+		case 56:
+		case 104:
+			WriteNumber(8);
+			break;
+		case 57:
+		case 105:
+			WriteNumber(9);
+			break;
+		case 187:
+		case 107:
+			Operation('+');
+			break;
+		case 189:
+		case 109:
+			Operation('-');
+			break;
+		case 186:/*???*/
+		case 106:
+			Operation('*');
+			break;
+		case 191:/*???*/
+		case 111:
+			Operation('/');
+			break;
+		case 190:
+		case 110:
+			Dot();
+			break;
+		case 13:
+			Calc();
+			break;
+		case 27:
+			Clear();
+			break;
+		case 8:
+			Delete();
+			break;
+	}	
+}, true);
+		</script>
+	</body>
+</html>
