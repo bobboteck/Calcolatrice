@@ -1,6 +1,6 @@
 @font-face {
     font-family:DigitalDisplay;
-    src:url(../font/digital-7.ttf);
+    src:url(../font/alarm-clock.ttf) format('truetype');
 }
 
 html {}
@@ -16,7 +16,7 @@ div.content {
 
 div.display {
 	margin:5px;
-	padding:5px;
+	padding:5px 5px 0 5px;
 	min-height:33px;
 	border:1px solid #000;
 	background-color:#a1bba5;
