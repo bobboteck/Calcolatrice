@@ -49,12 +49,16 @@
 function Clear()
 {
 	$("#result").text('0');
+
+	$("#result").focus();
 }
 
 function Delete()
 {
 	var expression = $("#result").text();
 	$("#result").text(expression.substring(0,expression.length-1));
+
+	$("#result").focus();
 }
 
 function WriteNumber(value)
@@ -67,6 +71,8 @@ function WriteNumber(value)
 	{
 		$("#result").text($("#result").text() + value);
 	}
+
+	$("#result").focus();
 }
 
 function Dot()
@@ -79,6 +85,8 @@ function Dot()
 	{
 		$("#result").text($("#result").text() + '.');
 	}
+
+	$("#result").focus();
 }
 
 function Operation(value)
@@ -97,6 +105,8 @@ function Operation(value)
 			$("#result").text($("#result").text() + value);
 		}
 	}
+
+	$("#result").focus();
 }
 
 function Calc()
@@ -110,6 +120,8 @@ function Calc()
 	{
 		$("#result").text('ERROR');
 	}
+
+	$("#result").focus();
 }
 
 document.addEventListener('keydown', function(event)

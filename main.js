@@ -1,6 +1,6 @@
 'use strict';
 
-console.log(__dirname);
+//console.log(__dirname);
 
 const {app, BrowserWindow} = require('electron');
 
